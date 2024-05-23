@@ -57,6 +57,7 @@ folder_path = 'dbfs:/FileStore/tables/';
 df = spark.read.csv(path=folder_path,header=True,inferSchema=True)
 display(df)
 ```
+Note : We can also pass schema if we want to read only some columns
 
 ### Write dataframe into Csv
 ```python

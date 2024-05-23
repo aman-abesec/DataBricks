@@ -78,3 +78,12 @@ path = 'dbfs:/FileStore/tables/effects_of_covid_19_on_trade_at_15_december_2021_
 df=spark.read.csv(path=path,header=True,inferSchema=True);
 df.show(n=4,truncate=False,vertical=True) #n number of colums,vertical direction of data to show
 ```
+
+#### withColumn()
+```python
+from pyspark.sql.functions import col
+path = 'dbfs:/FileStore/tables/effects_of_covid_19_on_trade_at_15_december_2021_provisional.csv';
+df=spark.read.csv(path=path,header=True,inferSchema=True);
+df=df.withColumn('Updated Value',col=col('Value')/100) #Here we can also cast the value .cast('Integer')
+df.show(n=2,vertical=True)
+```

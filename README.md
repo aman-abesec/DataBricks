@@ -96,6 +96,8 @@ df=df.withColumnRenamed('Country','RenamedCountry')
 df.show()
 ```
 ### StructType() StructField()
+NOTE : You can also pass ArrayType(IntegerType) 
+
 #### Method-1
 ``` python
 from pyspark.sql.types import StructType,StructField,StringType,IntegerType

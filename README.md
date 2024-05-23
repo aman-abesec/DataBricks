@@ -71,3 +71,10 @@ df.write.option("header",True).csv(path,header=True,mode='overWrite')
 ```
 
 NOTE : Read ,write operation for json 
+
+#### show()
+```python
+path = 'dbfs:/FileStore/tables/effects_of_covid_19_on_trade_at_15_december_2021_provisional.csv';
+df=spark.read.csv(path=path,header=True,inferSchema=True);
+df.show(n=4,truncate=False,vertical=True) #n number of colums,vertical direction of data to show
+```

@@ -72,14 +72,14 @@ df.write.option("header",True).csv(path,header=True,mode='overWrite')
 
 NOTE : Read ,write operation for json 
 
-#### show()
+### show()
 ```python
 path = 'dbfs:/FileStore/tables/effects_of_covid_19_on_trade_at_15_december_2021_provisional.csv';
 df=spark.read.csv(path=path,header=True,inferSchema=True);
 df.show(n=4,truncate=False,vertical=True) #n number of colums,vertical direction of data to show
 ```
 
-#### withColumn()
+### withColumn()
 ```python
 from pyspark.sql.functions import col
 path = 'dbfs:/FileStore/tables/effects_of_covid_19_on_trade_at_15_december_2021_provisional.csv';
@@ -88,10 +88,32 @@ df=df.withColumn('Updated Value',col=col('Value')/100) #Here we can also cast th
 df.show(n=2,vertical=True)
 ```
 
-#### withColumnRenamed()
+### withColumnRenamed()
 ```python
 path = 'dbfs:/FileStore/tables/effects_of_covid_19_on_trade_at_15_december_2021_provisional.csv';
 df=spark.read.csv(path=path,header=True,inferSchema=True);
 df=df.withColumnRenamed('Country','RenamedCountry')
 df.show()
+```
+### StructType() StructField()
+#### Method-1
+``` python
+from pyspark.sql.types import StructType,StructField,StringType,IntegerType
+data=[{'id':1,'Name':'Aman'},{'id':2,'Name':'Akash'}]
+hedaer_schema = StructType([StructField(name='id',dataType=IntegerType()),
+  StructField(name='Name',dataType=StringType())
+])
+df = spark.createDataFrame(data)
+df.show()
+```
+#### Method-2
+```python
+from pyspark.sql.types import StructType,StructField,StringType,IntegerType
+path = 'dbfs:/FileStore/tables/effects_of_covid_19_on_trade_at_15_december_2021_provisional.csv';
+hedaer_schema = StructType([\
+    StructField(name='RenamedCountry',dataType=StringType()),\
+      StructField(name='Value',dataType=IntegerType())
+])
+df=spark.read.csv(path=path,header=True,schema=hedaer_schema);
+df.display()
 ```

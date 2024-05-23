@@ -87,3 +87,11 @@ df=spark.read.csv(path=path,header=True,inferSchema=True);
 df=df.withColumn('Updated Value',col=col('Value')/100) #Here we can also cast the value .cast('Integer')
 df.show(n=2,vertical=True)
 ```
+
+#### withColumnRenamed()
+```python
+path = 'dbfs:/FileStore/tables/effects_of_covid_19_on_trade_at_15_december_2021_provisional.csv';
+df=spark.read.csv(path=path,header=True,inferSchema=True);
+df=df.withColumnRenamed('Country','RenamedCountry')
+df.show()
+```

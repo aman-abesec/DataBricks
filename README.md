@@ -69,3 +69,5 @@ df = spark.createDataFrame(data,hedaer_schema)
 df.write.option("header",True).csv(path,header=True,mode='overWrite')
 # For reading data you can just provide the folder path
 ```
+
+NOTE : Read ,write operation for json 
